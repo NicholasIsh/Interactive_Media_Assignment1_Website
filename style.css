@@ -227,62 +227,11 @@ footer {
     transform: scale(1.08);
 }
 
-@keyframes fadeIn {
-    0% {
-      opacity: 0;
-      
-    }
-    100% {
-      opacity: 1;
-      
-    }
+  .aPOTD{
+    box-shadow: 0 0 20px #131313;
   }
 
-@keyframes slideInFromLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-100%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInFromRight {
-    0% {
-      opacity: 0;
-      transform: translateX(+100%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInFromBottom {
-    0% {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInFromBottomArrow {
-    0% {
-      opacity: 0;
-      transform: translateY(1000%);
-    }
-    50%{
-        transform: translateY(1000%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
- 
+ .aPOTD:hover{
+    box-shadow: 0 0 30px #131313;
+    cursor: pointer;
+ }

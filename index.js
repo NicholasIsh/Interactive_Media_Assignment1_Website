@@ -30,6 +30,8 @@ async function fetchAstronomyPicture() {
             const imageElement = document.createElement('img');
             imageElement.src = data.url;
             imageElement.alt = data.title;
+            imageElement.className = "aPOTD"
+            // imageElement.onclick(openPage('https://apod.nasa.gov/apod/astropix.html'))
             
             const titleElement = document.createElement('h3');
             titleElement.textContent = data.title;
