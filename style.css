@@ -10,9 +10,12 @@ body {
 }
 
 header {
-    background-color: #333;
+    position: fixed;
+    background-color: #0c0c0cf6;
     color: #fff;
-    padding: 10px 0;
+    padding: .5%;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgb(100, 100, 100);
 }
 
 .header-content {
@@ -23,11 +26,12 @@ header {
 }
 
 .logo {
-    width: 5%; /* Adjust width as needed */
+    width: 3.5%; /* Adjust width as needed */
 }
 
 nav {
     margin-right: auto;
+    margin-left: 1%;
 }
 
 nav ul {
@@ -47,7 +51,7 @@ nav a {
     background-image: url('background.png');
     background-size: cover;
     text-align: center;
-    padding: 100px 0;
+    padding: 10%;
     color: #fff;
 }
 
@@ -69,23 +73,30 @@ nav a {
 .features {
     display: flex;
     justify-content: space-between;
-    padding: 50px 0;
+    padding: 5%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('background.png');
+    background-size: cover;
+    color: #fff;
 }
 
 .feature {
     flex: 1;
     text-align: center;
-    padding: 0 20px;
+    padding: .1%;
 }
 
 .feature h2 {
     font-size: 24px;
-    margin-bottom: 10px;
-}
+    margin-bottom:1%;
+} 
 
-.footer {
-    background-color: #333;
+footer {
+    background:  #000000;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 4%;
+}
+
+.homePagePic{
+    width: 30%;
 }
