@@ -9,13 +9,14 @@
 <body>
     <header>
         <div class="header-content">
-            <img src="logo.png" alt="Logo" class="logo">
+            <img src="/Images/logo.png" alt="Logo" class="logo" onclick="openPage('index.html')">
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Data Visualisation</a></li>
-                    <li><a href="#">Data Art</a></li>
+                    <li onclick="openPage('index.html')">Home</li>
+                    <li onclick="openPage('blog.html')">Blog</li>
+                    <li onclick="openPage('design.html')">Design</li>
+                    <li onclick="openPage('dataVisualisation.html')">Data Visualisation</li>
+                    <li onclick="openPage('dataArt.html')">Data Art</li>
                 </ul>
             </nav>
         </div>
@@ -23,29 +24,57 @@
 
     <main>
         <section class="hero">
-            <img src="HomePagePic.png" alt="HomePagePic" class="homePagePic">
+            <img src="/Images/HomePagePic.png" alt="HomePagePic" class="homePagePic">
             <h1>Welcome to my website</h1>
             <p>Explore the universe, spacecrafts, and embark on epic space adventures.</p>
-            <a href="#" class="cta-button">Get Started</a>
-        </section>
+            <a href="#features" class="cta-button">Explore</a>
+            
+            
 
-        <section class="features">
+        </section>
+        <section class="apod-section" id="apod">
+            <h2>Astronomy Picture of the Day</h2>
+            <div class="apod-content"></div>
+        </section>
+        <section class="features" id="features">
             <div class="feature">
-                <h2>Blog</h2>
-                <p>Design and construct your own rockets using a realistic physics simulation.</p>
+                <h2 onclick="openPage('blog.html')">Blog</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere, eius amet. Consequuntur tempore architecto, possimus impedit fugiat commodi aliquid distinctio ullam sed asperiores obcaecati suscipit nam nesciunt dicta odit voluptate?</p>
             </div>
             <div class="feature">
-                <h2>Data Visualisation</h2>
-                <p>(placeholder)</p>
+                <h2 onclick="openPage('design.html')">Design</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere, eius amet. Consequuntur tempore architecto, possimus impedit fugiat commodi aliquid distinctio ullam sed asperiores obcaecati suscipit nam nesciunt dicta odit voluptate?</p>
             </div>
             <div class="feature">
-                <h2>Data Art</h2>
-                <p>(placeholder)</p>
+                <h2 onclick="openPage('dataVisualisation.html')">Data Visualisation</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui vero quo rerum eum beatae harum voluptas fuga, quaerat dignissimos ducimus eligendi accusamus quae nesciunt, fugiat excepturi ullam illum et magni.</p>
+            </div>
+            <div class="feature">
+                <h2 onclick="openPage('dataArt.html')">Data Art</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptatem eveniet similique corporis libero incidunt numquam consequuntur ad error voluptatibus temporibus voluptate consectetur necessitatibus explicabo magni neque, laborum accusantium sed.</p>
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 placeholder</p>
+    <footer class="pageFooter">
+        <section class>
+            <section class="footerText" onclick="openPage('https://www.wits.ac.za')">University of Witwatersrand.</section>
+            <section>
+                <span>Johannesburg</span>,
+                <span>Gauteng</span>,
+                <span>South Africa</span>
+            </section>
+        </section>
+        <section class="logoFooter">
+            <img class="personalLogo" src="/Images/personalLogo.png" alt="Logo" onclick="openPage('https://nicholasish.github.io/index.html')">
+        </section>
+        <section>
+            <span class="footerText" onclick="openPage('https://nicholasish.github.io/profile.html')">Nicholas Isherwood</span>
+            <span class="footerText" onclick="openPage('mailto:2465008@students.wits.ac.za')">2465008@students.wits.ac.za</span>
+            <span class="phoneNumber">Cell: 074-866-2241</span>
+            <span class="footerText" onclick="openPage('https://www.freepik.com/author/catalyststuff')">Images by catalyststuff on Freepik</span>
+            
+        </section>
     </footer>
+    <script src="index.js"></script>
 </body>
 </html>

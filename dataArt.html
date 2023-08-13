@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Space Website</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="/Images/logo.png" alt="Logo" class="logo" onclick="openPage('index.html')">
+            <nav>
+                <ul>
+                    <li onclick="openPage('index.html')">Home</li>
+                    <li onclick="openPage('blog.html')">Blog</li>
+                    <li onclick="openPage('design.html')">Design</li>
+                    <li onclick="openPage('dataVisualisation.html')">Data Visualisation</li>
+                    <li onclick="openPage('dataArt.html')">Data Art</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="/Images/missing.png" alt="HomePagePic" class="homePagePic">
+            <h1>Looks like something is missing</h1>
+            <p>Try again later</p>
+        </section>
+
+        
+    </main>
+    <footer class="pageFooter">
+        <section class>
+            <section class="footerText" onclick="openPage('https://www.wits.ac.za')">University of Witwatersrand.</section>
+            <section>
+                <span>Johannesburg</span>,
+                <span>Gauteng</span>,
+                <span>South Africa</span>
+            </section>
+        </section>
+        <section class="logoFooter">
+            <img class="personalLogo" src="/Images/personalLogo.png" alt="Logo" onclick="openPage('https://nicholasish.github.io/index.html')">
+        </section>
+        <section>
+            <span class="footerText" onclick="openPage('https://nicholasish.github.io/profile.html')">Nicholas Isherwood</span>
+            <span class="footerText" onclick="openPage('mailto:2465008@students.wits.ac.za')">2465008@students.wits.ac.za</span>
+            <span class="phoneNumber">Cell: 074-866-2241</span>
+            <span class="footerText" onclick="openPage('https://www.freepik.com/author/catalyststuff')">Images by catalyststuff on Freepik</span>
+        </section>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
