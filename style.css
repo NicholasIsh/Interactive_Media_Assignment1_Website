@@ -6,7 +6,7 @@ body, h1, h2, p, ul {
 
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Orbitron", sans-serif;
 }
 
 header {
@@ -60,7 +60,7 @@ nav li:hover {
     cursor: pointer;
 }
 
-.hero {
+.welcome {
     background-image: url('/Images/background.png');
     background-size: cover;
     text-align: center;
@@ -69,13 +69,13 @@ nav li:hover {
     text-shadow: 0 0 10px rgb(100, 100, 100);
 }
 
-.hero h1 {
+.welcome h1 {
     font-size: 36px;
     margin-bottom: 10px;
     text-shadow: 0 0 10px rgb(100, 100, 100);
 }
 
-.hero h2{
+.welcom h2{
     margin-top: 5%;
     margin-bottom: 5%;
 }
@@ -122,11 +122,38 @@ nav li:hover {
     color: #fff;
 }
 
+
+.homeFeature{
+    flex: 1;
+    text-align: center;
+    padding: .1%;
+    margin-inline: 1%;
+    margin-bottom: auto;
+    
+}
+
+.homeFeature h2 {
+    font-size: 24px;
+    margin-bottom:1%;
+} 
+
+.homeFeature h2:hover{
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+}
+
 .feature {
     flex: 1;
     text-align: center;
     padding: .1%;
     margin-inline: 1%;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-left: 3px solid #FFD700; /* Yellow color */
+    padding-left: 20px; /* Add some space between the text and the line */
+    margin-left: 20px; 
 }
 
 .feature h2 {
@@ -203,7 +230,7 @@ footer {
     padding: 4%;
     justify-content: center;
     display: grid;
-    grid-template-columns: 10% 10% 10%;
+    grid-template-columns: 15% 15% 15%;
     gap: 0px;
 }
 
@@ -234,4 +261,8 @@ footer {
  .aPOTD:hover{
     box-shadow: 0 0 30px #131313;
     cursor: pointer;
+ }
+
+ .wireframe{
+    width: 100%;
  }

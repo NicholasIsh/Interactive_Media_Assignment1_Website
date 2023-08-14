@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="This is the home page for my space themed website">
+    <meta name="keywords" content="explore, astronomy, Web Design, Student, blog, data visualisation, data art">
+    <meta name="author" content="Nicholas Isherwood">
     <link rel="stylesheet" href="style.css">
-    <title>Space Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <title>Home Page</title>
 </head>
 <body>
     <header>
@@ -23,10 +30,10 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="welcome">
             <img src="/Images/HomePagePic.png" alt="HomePagePic" class="homePagePic">
-            <h1>Welcome to my website</h1>
-            <p>Explore the universe, spacecrafts, and embark on epic space adventures.</p>
+            <h1>Welcome to my website!</h1>
+            <p>Explore the universe, and embark on an epic space adventure.</p>
             <a href="#features" class="cta-button">Explore</a>
             
             
@@ -37,19 +44,19 @@
             <div class="apod-content"></div>
         </section>
         <section class="features" id="features">
-            <div class="feature">
+            <div class="homeFeature">
                 <h2 onclick="openPage('blog.html')">Blog</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere, eius amet. Consequuntur tempore architecto, possimus impedit fugiat commodi aliquid distinctio ullam sed asperiores obcaecati suscipit nam nesciunt dicta odit voluptate?</p>
+                <p>Explore a collection of insightful blogs that delve into the world of data visualization, interactive media, and more. Here I discuss the significance of data visualization, its evolution, and its applications in various fields. Join us on a journey of discovery as we unravel the art of transforming complex data into captivating narratives.</p>
             </div>
-            <div class="feature">
+            <div class="homeFeature">
                 <h2 onclick="openPage('design.html')">Design</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere, eius amet. Consequuntur tempore architecto, possimus impedit fugiat commodi aliquid distinctio ullam sed asperiores obcaecati suscipit nam nesciunt dicta odit voluptate?</p>
+                <p>Delve into the thought processes and design decisions that shaped every aspect of this space-themed data website. Witness the fusion of minimalism and visual appeal as I guide you through my journey of creating a sleek and user-friendly digital experience. Explore the very blueprint of this website's design, a testament to the art of creating intuitive and captivating interfaces.</p>
             </div>
-            <div class="feature">
+            <div class="homeFeature">
                 <h2 onclick="openPage('dataVisualisation.html')">Data Visualisation</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui vero quo rerum eum beatae harum voluptas fuga, quaerat dignissimos ducimus eligendi accusamus quae nesciunt, fugiat excepturi ullam illum et magni.</p>
             </div>
-            <div class="feature">
+            <div class="homeFeature">
                 <h2 onclick="openPage('dataArt.html')">Data Art</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptatem eveniet similique corporis libero incidunt numquam consequuntur ad error voluptatibus temporibus voluptate consectetur necessitatibus explicabo magni neque, laborum accusantium sed.</p>
             </div>
@@ -68,7 +75,7 @@
             <img class="personalLogo" src="/Images/personalLogo.png" alt="Logo" onclick="openPage('https://nicholasish.github.io/index.html')">
         </section>
         <section>
-            <span class="footerText" onclick="openPage('https://nicholasish.github.io/profile.html')">Nicholas Isherwood</span>
+            <span>Nicholas Isherwood</span>
             <span class="footerText" onclick="openPage('mailto:2465008@students.wits.ac.za')">2465008@students.wits.ac.za</span>
             <span class="phoneNumber">Cell: 074-866-2241</span>
             <span class="footerText" onclick="openPage('https://www.freepik.com/author/catalyststuff')">Images by catalyststuff on Freepik</span>
