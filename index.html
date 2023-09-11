@@ -11,11 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <title>Home Page</title>
 </head>
 <body>
     <header>
-        <div class="header-content">
+        <section class="headerContent">
             <img src="/Images/logo.png" alt="Logo" class="logo" onclick="openPage('index.html')">
             <nav>
                 <ul>
@@ -26,40 +27,45 @@
                     <li onclick="openPage('dataArt.html')">Data Art</li>
                 </ul>
             </nav>
-        </div>
+        </section>
     </header>
 
     <main>
         <section class="welcome">
             <img src="/Images/HomePagePic.png" alt="HomePagePic" class="homePagePic">
             <h1>Welcome to my website!</h1>
-            <p>Explore the universe, and embark on an epic space adventure.</p>
-            <a href="#features" class="cta-button">Explore</a>
+            <p>Join me on my mission to build a space themed data visualisation website!</p>
+            <a href="#features" class="exploreButton">Explore</a>
             
             
 
         </section>
-        <section class="apod-section" id="apod">
+        <section class="apod" id="apod">
             <h2>Astronomy Picture of the Day</h2>
-            <div class="apod-content"></div>
+            <section class="apod"></section>
         </section>
+
+        <section class="pageTitle">
+            <h2>Mission Report</h2>
+        </section>
+        
         <section class="features" id="features">
-            <div class="homeFeature">
+            <section class="homeFeature">
                 <h2 onclick="openPage('blog.html')">Blog</h2>
                 <p>Explore a collection of insightful blogs that delve into the world of data visualization, interactive media, and more. Here I discuss the significance of data visualization, its evolution, and its applications in various fields. Join us on a journey of discovery as we unravel the art of transforming complex data into captivating narratives.</p>
-            </div>
-            <div class="homeFeature">
+            </section>
+            <section class="homeFeature">
                 <h2 onclick="openPage('design.html')">Design</h2>
                 <p>Delve into the thought processes and design decisions that shaped every aspect of this space-themed data website. Witness the fusion of minimalism and visual appeal as I guide you through my journey of creating a sleek and user-friendly digital experience. Explore the very blueprint of this website's design, a testament to the art of creating intuitive and captivating interfaces.</p>
-            </div>
-            <div class="homeFeature">
+            </section>
+            <section class="homeFeature">
                 <h2 onclick="openPage('dataVisualisation.html')">Data Visualisation</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui vero quo rerum eum beatae harum voluptas fuga, quaerat dignissimos ducimus eligendi accusamus quae nesciunt, fugiat excepturi ullam illum et magni.</p>
-            </div>
-            <div class="homeFeature">
+                <p>Explore intruiging visual representations of data sourced from NASA's NeoWs and DONKI APIs. Dive into my collection of informative visuals that simplify information, making it easy to grasp and analyze. This page attempts to showcases the art and science of presenting data in a way that enlightens and informs.</p>
+            </section>
+            <section class="homeFeature">
                 <h2 onclick="openPage('dataArt.html')">Data Art</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptatem eveniet similique corporis libero incidunt numquam consequuntur ad error voluptatibus temporibus voluptate consectetur necessitatibus explicabo magni neque, laborum accusantium sed.</p>
-            </div>
+            </section>
         </section>
     </main>
     <footer class="pageFooter">
@@ -83,5 +89,6 @@
         </section>
     </footer>
     <script src="index.js"></script>
+    <script src="astronomyPicture.js"></script>
 </body>
 </html>

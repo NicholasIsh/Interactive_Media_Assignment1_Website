@@ -11,11 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <title>Blog Page</title>
 </head>
 <body>
     <header>
-        <div class="header-content">
+        <section class="headerContent">
             <img src="/Images/logo.png" alt="Logo" class="logo" onclick="openPage('index.html')">
             <nav>
                 <ul>
@@ -26,7 +27,7 @@
                     <li onclick="openPage('dataArt.html')">Data Art</li>
                 </ul>
             </nav>
-        </div>
+        </section>
     </header>
 
     <main>
@@ -35,11 +36,11 @@
         </section>
 
         <section class="blogs" id="features">
-            <div class="blogTitle">
+            <section class="blogTitle">
                 <h2>Blog Post 1</h2>
                 
-            </div>
-            <div class="feature">
+            </section>
+            <section class="feature">
                 
                 <p>I found that the reading “Overview of Data Visualization” by Qi Li provided a well explained understanding of data visualisation along with its history, significance and different forms. Through the analysis of the authors definition of data visualisation, data visualation’s evolution, the difference between data and information and the different forms of data visualisation, I intend to reflect on my own understanding of data visualisation and its importance in my studies. <br> <br>
 
@@ -55,28 +56,42 @@
 
                     Li, Q. (2020). Overview of Data Visualization. Embodying Data, pp.17–47. doi:https://doi.org/10.1007/978-981-15-5069-0_2.
                     </p>
-            </div>
+            </section>
             
         </section>
         <section class="blogsRight" id="features">
             
-            <div class="feature">
+            <section class="feature">
                 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit assumenda ex mollitia quos adipisci. Officiis dolorem repellat dolorum, omnis possimus quibusdam, nam placeat harum hic architecto suscipit odio et molestias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ipsa libero eum corrupti excepturi quae tempora fugit possimus commodi. Dolore molestiae iste repellat aliquam porro repudiandae facere eaque perferendis quas!<br> <br>
+                <p>For the design of my website I wanted to create a unique mix of sleek minimalistic design with a touch of colourful cartoonish aesthetic. Here I aim to dissect the various elements that make up the UI and UX of my website and offer a comprehensive analysis of my design choices. Taking into consideration the established theories and principles in the field of UI and UX design covered so far this semester. When I began planning my website I looked to a few websites for inspiration, however one that caught my eye was the Kerbal Space Program site for its overall aesthetic that also fits seamlessly with the space theme of this assignment. <br> <br>
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam earum soluta quos ex ipsum nulla adipisci! Sit temporibus nam necessitatibus et consequuntur fuga fugiat non ipsa numquam saepe, dolor hic. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus voluptas animi consectetur odio vero reprehenderit, asperiores itaque nulla, cupiditate error iusto architecto officiis officia ex. Soluta molestiae ut impedit unde? <br> <br>
+                    My colour palette for my website is curated with the intention of staying in line with the space theme whilst also maintaining the minimalistic aesthetic, featuring a deep black (#000000) as the background, contrasted by white (#FFF) text and accented by subtle touches of yellow (#f0bf55). I chose this colour scheme to reflect the cosmos with the black background representing the void of space with the white to represent the stars along with the subtle inclusion of yellow to add a touch of sci-fi aesthetic. I feel this worked well together however there are some areas of the site where the juxtapose of the black background contrasts against the pure white text making it less readable. For the text I used the "Orbitron" font for headers and titles and paragraph text. I chose this font as I found that it further reinforces the space-themed aesthetic. Wireframes were developed as a blueprint for the site at the start of its development to ensure a logical flow and structure that would guide the user's journey through the site in a seamless and user-friendly way.<br> <br>
                     
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, adipisci! Ducimus, dolore fugit praesentium, dolorum in quam ea veniam exercitationem architecto enim, aut perspiciatis voluptatibus odit consequuntur! Ullam, placeat non? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore saepe corporis tenetur a? Optio cumque reprehenderit eveniet inventore repudiandae, sed qui saepe, similique modi ut voluptatibus excepturi vero voluptates aut?<br> <br>
+                    When designing the layout of my website with wireframes I took the Gestalt design principles explained by Kai Tomboc(2023) into consideration which advocate for visual hierarchy and balance. I did this with a focus on similarity, continuity, closure, common regions, symmetry and simplicity. These principles helped me create a cohesive layout for my website and I found them to be very useful when I was not sure where to place elements and how to structure them. Additionally I looked at Don Norman's (2013) seven principles of design found in Norman's Book "The Design of Everyday Things" with the aim to strike a balance between aesthetic appeal and functional usability.<br> <br>
                     
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo maxime, cum, autem odio eaque voluptatem velit iusto quas numquam maiores ad sunt, expedita commodi culpa quibusdam molestias soluta corrupti in? Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et adipisci possimus a aperiam laborum, ipsum, voluptas hic provident omnis animi accusantium quidem corrupti! Aliquid distinctio debitis velit eum eaque?<br> <br>
-
+                    My website’s design strengths lie in its user-centric approach and minimalistic style in order to make the site more comprehensive. However, the minimalistic approach, while sleek and modern, could potentially be perceived as too sparse or lacking informational cues for some users. These strengths and weaknesses are considered in theories like Fitts' Law, which stresses the importance of making interactive elements easily accessible to users. However Hick's Law was taken into consideration as it warns against overwhelming users with too many choices. Another weakness could be found in the "Orbitron" font as at times it can prove difficult to read especially when it comes to the paragraph elements. This could be avoided in my next iteration by either finding a new font that fits with the theme of my website or to keep the "Orbitron" font for titles and headers whilst using a more readable font for paragraph elements.<br> <br>
+                    
+                    The inclusion of cartoon images of astronauts goes beyond mere aesthetics but aims to tell a story and evoke emotions. The astronaut on the homepage with the cosmic backdrop serve as narrative elements that contribute to a sense of exploration and discovery. This is supported by Norman's(2005) emotional design theory found in his essay "Emotional design: People and things", which asserts that design elements can evoke specific feelings and affect user engagement. Additionally the dynamic visuals, sourced from NASA's "Astronomy Picture of the Day," API adds another layer of engagement, offering users new content everyday that fits with the site's space theme.<br> <br>
+                    
+                    The layout of my site is predominantly asymmetrical for all pages except for the homepage where the elements are aligned to the centre of the screen. This layout was inspired by Kerbal Space Programs website where elements are placed asymmetrically below each other. I found this added a dynamic layer as the flow of information goes from left to right and back. The choice for the homepage to be aligned to the centre was made to make that page stand out and be more unique compared to the other pages as it serves as a launching pad to the other pages. I made use of white space between articles to indicate to the users where an article begins and ends as well as the use of white space and visual hierarchy further contributes to an uncluttered, user-friendly experience with the aim to enable easy navigation throughout the site, allowing users to easily find what they're looking for. <br> <br>
+                    
+                    My intention in the UI and UX design of the website was to create a harmonious blend of contrasting aesthetics, underpinned by researched theories and principles. While my design has its strengths in user-centric typography and aesthetic visuals, there is still much room for improvement. Despite this I am satisfied with the overall aesthetic of the site and I feel it is a good fit into the space theme for this assignment. I believe this is a great improvement from my website last semester which I felt lacked personality and its colour scheme was too bland.<br> <br>
+                    
+                    Reference List:<br> <br>
+                    
+                    Tomboc, K. (2023). Gestalt design principles. [online] Usabilityhub.com. Available at: https://usabilityhub.com/blog/gestalt-design-principles#:~:text=It%20also%20sheds%20light%20on,naturally%20organize%20and%20perceive%20them. [Accessed 30 Aug. 2023].<br> <br>
+                    
+                    Norman, D.A., 2005. Emotional design: People and things. Retrieved August, 30.<br> <br>
+                    
+                    Norman, D., 2013. The design of everyday things: Revised and expanded edition. Basic books.<br> <br>
+                    
                     
                     </p>
-            </div>
-            <div class="blogTitle">
+            </section>
+            <section class="blogTitle">
                 <h2>Blog Post 2</h2>
                 
-            </div>
+            </section>
         </section>
     </main>
     <footer class="pageFooter">

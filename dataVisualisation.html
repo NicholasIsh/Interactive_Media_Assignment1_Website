@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <title>Data Visualisation Page</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
 </head>
 <body>
     <header>
-        <div class="header-content">
+        <section class="headerContent">
             <img src="/Images/logo.png" alt="Logo" class="logo" onclick="openPage('index.html')">
             <nav>
                 <ul>
@@ -22,7 +26,7 @@
                     <li onclick="openPage('dataArt.html')">Data Art</li>
                 </ul>
             </nav>
-        </div>
+        </section>
     </header>
 
     <main>
@@ -31,8 +35,27 @@
             <h1>Looks like something is missing</h1>
             <p>Try again later</p>
         </section>
-
+        <section class="graphSection">
+            <section class="blogTitle">
+                <h2>Near Earth Objects</h2>
+                <p>This bubble chart provides an illustrative representation of the size and proximity of near-Earth objects (NEOs) observed over a week, using data sourced from NASA's DONKI API. The X-axis signifies the miss distance of each NEO from Earth, measured in kilometers, while the Y-axis indicates their relative velocity in kilometers per second. The size of each bubble corresponds to the estimated diameter of the NEO. Larger bubbles represent bigger NEOs, emphasizing their significance. This chart offers an immediate visual insight into the relative sizes, speeds, and distances of the NEOs.</p>
+            </section>
+            
+            <section class="neoSection">
+                
+                <div id="neoGraph"></div>
+            </section>
+        </section>
         
+        <section class="graphSection">
+            <section class="neoSection">
+                <svg id="flareGraph"></svg>
+            </section>
+            <section class="blogTitle">
+                <h2>Solar Flare Activity</h2>
+                <p>This graph represents the solar flare activity recorded over the past 12 days, using data sourced from NASA's DONKI API. The x-axis represents the date, displaying each day the data was collected on. Meanwhile, the y-axis indicates the time of day when each flare event began, measured in hours. By observing the plotted data points and the connecting line, one can discern patterns or trends in solar flare activity, such as specific days or times when the activity was particularly high or low.</p>
+            </section>
+        </section>
     </main>
     <footer class="pageFooter">
         <section class>
@@ -54,5 +77,6 @@
         </section>
     </footer>
     <script src="index.js"></script>
+    <script src="graph.js"></script>
 </body>
 </html>
