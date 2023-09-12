@@ -1,11 +1,9 @@
 const API_KEY = 'raGr2ktvfncBRDB6x4deDM1nfsrJHKrEetIrJVF0';
 const today = new Date();
 const endDate = new Date(today);
-endDate.setDate(today.getDate() + 7); // 7 days from now
+endDate.setDate(today.getDate() + 7); 
 const START_DATE = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
-
-
 
     fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${START_DATE}&end_date=${END_DATE}&api_key=${API_KEY}`)
         .then(response => response.json())
@@ -18,6 +16,10 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
         
         for (let date in neos) {
             for (let neo of neos[date]) {
+                let diameter = neo.estimated_diameter.meters.estimated_diameter_max;
+                console.log(`NEO Velocity: ${parseFloat(neo.close_approach_data[0].relative_velocity.kilometers_per_second)}, Miss Distance: ${parseFloat(neo.close_approach_data[0].miss_distance.kilometers)}, Diameter: ${diameter} meters`);
+            
+            
                 plotData.push({
                     diameter: neo.estimated_diameter.meters.estimated_diameter_max,
                     velocity: parseFloat(neo.close_approach_data[0].relative_velocity.kilometers_per_second),
@@ -25,7 +27,6 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
                 });
             }
         }
-    
         const width = 1100;
         const height = 600;
         const margin = { top: 20, right: 200, bottom: 50, left: 50 };
@@ -67,8 +68,7 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
             .attr("transform", `translate(0,${innerHeight})`)
             .call(d3.axisBottom(xScale));
         
-        // Key
-        const keyData = [5, 1000, 2000]; // Modify as needed
+        const keyData = [5, 1000, 2000]; 
         const key = svg.append("g")
                        .attr("transform", `translate(${width - margin.right + 20},${margin.top + 140})`);
 
@@ -87,7 +87,7 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
             .enter().append("text")
             .attr("x", 10)
             .attr("y", (d, i) => i * 80)
-            .attr("dy", "0.32em")  // Center text vertically in circle
+            .attr("dy", "0.32em")
             .style("fill", "white")
             .text(d => `${d}m`);
     
@@ -111,8 +111,8 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
             .attr("transform", `translate(${width - margin.right + 20},${margin.top + 100})`);
 
         keyTitle.append("text")
-            .attr("x", 70)  // Adjust this if needed
-            .attr("y", -30) // This places the text 30 units above the first circle in the key
+            .attr("x", 70) 
+            .attr("y", -30) 
             .style("text-anchor", "middle")
             .style("fill", "white")
             .text("Diameter Key");
@@ -130,16 +130,14 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
     .then(function(data) {
         const processedData = data.map(d => ({
             date: new Date(d.beginTime).toDateString(),
-            time: new Date(d.beginTime).getHours() + new Date(d.beginTime).getMinutes() / 60 // hours + fraction of the hour
+            time: new Date(d.beginTime).getHours() + new Date(d.beginTime).getMinutes() / 60 
         }));
 
-        // Set up SVG and scales
         const svg = d3.select("#flareGraph"),
-        margin = {top: 20, right: 200, bottom: 50, left: 50},
-        width = 1100,
+        margin = {top: 20, right: 20, bottom: 50, left: 50},
+        width = 1000,
         height = 500;
 
-        // Set SVG height and width
         svg.attr("width", width + margin.left + margin.right);
         svg.attr("height", height + margin.top + margin.bottom);
 
@@ -150,7 +148,7 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         x.domain(d3.extent(processedData, d => new Date(d.date)));
-        y.domain([0, 24]); // 24 hours in a day
+        y.domain([0, 24]);
 
         g.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -175,33 +173,32 @@ const END_DATE = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padS
             .attr("d", d3.line()
                 .x(d => x(new Date(d.date)))
                 .y(d => y(d.time)));
-        // X-axis
+
         g.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
-            .append("text") // Adding label for x-axis
-            .attr("y", margin.bottom - 20) // Adjust as per your design
-            .attr("x", width / 2)  // Centered within the axis
-            .attr("dy", "1em")  // Adjust distance from the x-axis
-            .attr("text-anchor", "middle")  // Center the text
+            .append("text") 
+            .attr("y", margin.bottom - 20)
+            .attr("x", width / 2) 
+            .attr("dy", "1em")  
+            .attr("text-anchor", "middle") 
             .attr("fill", "white") 
             .text("Date")
             .style("font-size", "16px")
-            .style("font-family", "Orbitron");  // Set the font-family
+            .style("font-family", "Orbitron"); 
 
-        // Y-axis
         g.append("g")
             .call(d3.axisLeft(y).ticks(24))
             .append("text") 
             .attr("transform", "rotate(-90)")
-            .attr("y", -margin.left + 6) // Adjust the position
-            .attr("x", -height / 2)  // Vertically center the text
-            .attr("dy", "1em")  // Adjust distance from the y-axis
-            .attr("text-anchor", "middle")  // Center the text
+            .attr("y", -margin.left + 6) 
+            .attr("x", -height / 2)  
+            .attr("dy", "1em")  
+            .attr("text-anchor", "middle") 
             .attr("fill", "white")
             .text("Time of day (hours)")
             .style("font-size", "16px")
-            .style("font-family", "Orbitron");  // Set the font-family
+            .style("font-family", "Orbitron");  
 
     })
     .catch(error => {

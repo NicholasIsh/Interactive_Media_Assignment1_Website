@@ -195,6 +195,11 @@ nav li:hover {
     text-shadow: 0 0 50px #363636;
 }
 
+.blogHeading p{
+    margin-top: 5%;
+
+}
+
 .blogs {
     display: flex;
     justify-content: space-between;

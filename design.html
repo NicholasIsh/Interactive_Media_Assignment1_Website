@@ -33,6 +33,8 @@
     <main>
         <section class="blogHeading">
             <h1>Style Guide</h1>
+
+            <p>This page provides a clear look into the design process and decisions made for my website. You'll find detailed choices, wireframes, and the reasoning behind each design element. From initial concepts to the final layout, all steps are documented here. It's not just about the website's appearance, but also the rationale behind each choice. If you're interested in design or simply want to understand my approach better, this section offers a straightforward look into our website's design process. Explore and see how it all came together.</p>
         </section>
 
         <section class="blogs" id="features">
@@ -138,12 +140,12 @@
             </section>
             <section class="feature">
                 
-                <img src="/Images/HomePageWireFrame.png" alt="homepage wireframe" class="wireframe">
+                <img src="/Images/HomePageWireFrame.png" alt="home page wireframe" class="wireframe">
             </section>
         </section>
         <section class="blogsRight" id="features">
             <section class="feature">
-                <img src="/Images/BlogPageWireFrame.png" alt="Logo" class="wireframe">
+                <img src="/Images/BlogPageWireFrame.png" alt="blog page wireframe" class="wireframe">
                 
             </section>
             <section class="blogTitle">
@@ -157,9 +159,130 @@
             </section>
             <section class="feature">
                 
-                <img src="/Images/StyleGuideWireFrame.png" alt="homepage wireframe" class="wireframe">
+                <img src="/Images/StyleGuideWireFrame.png" alt="design page wireframe" class="wireframe">
             </section>
         </section>
+
+        <section class="blogHeading">
+            <h1>Revised Wireframes</h1>
+        </section>
+
+        
+        <section class="blogsRight" id="features">
+            <section class="feature">
+                <img src="/Images/RWHomePage1.JPG" alt="revised home page wireframe" class="wireframe">
+                
+            </section>
+            <section class="blogTitle">
+                <h2>Home Page</h2>
+            </section>
+        </section>
+
+        <section class="blogs" id="features">
+            <section class="blogTitle">
+                <h2>Blog Page</h2>
+            </section>
+            <section class="feature">
+                
+                <img src="/Images/RWBlogPage.JPG" alt="revised blog page wireframe" class="wireframe">
+            </section>
+        </section>
+
+        <section class="blogsRight" id="features">
+            <section class="feature">
+                
+                <img src="/Images/RWDesignPage.JPG" alt="revised design page wireframe" class="wireframe">
+            </section>
+            <section class="blogTitle">
+                <h2>Design Page</h2>
+            </section>
+        </section>
+
+        <section class="blogs" id="features">
+            <section class="blogTitle">
+                <h2>Data Visualisation Page</h2>
+            </section>
+            <section class="feature">
+                
+                <img src="/Images/RWDataVisualisation.JPG" alt="revised data visualisation wireframe" class="wireframe">
+            </section>
+        </section>
+
+        <section class="blogHeading">
+            <h1>Graph Planning</h1>
+        </section>
+
+        <section class="blogs" id="features">
+            <section class="blogTitle">
+                <h2>Graph 1</h2>
+                
+            </section>
+            <section class="feature">
+                
+                <p>1. Objective: <br>
+                    To provide users with a clear, visual representation of the size, proximity, and speed of near-Earth objects (NEOs) over a selected period, emphasizing potential threats based on size and distance from Earth. <br> <br>
+                    
+                    2. Data Source: <br>
+                    NASA's Near Earth Object Web Service (NEOWS) - A freely available API offering detailed NEO information including size, velocity, and miss distance.<br><br>
+                    
+                    3. Features to Display:<br>
+                    
+                    Miss distance from Earth (X-axis)<br>
+                    Relative velocity (Y-axis)<br>
+                    Estimated diameter (represented by bubble size)<br><br>
+                    4. Visualization Tool:<br>
+                    D3.js - A JavaScript library for producing dynamic and interactive data visualizations in web browsers.<br><br>
+                    
+                    5. Graph Type:<br>
+                    Bubble chart.<br><br>
+                    
+                    6. Design:<br>
+                    A clean and minimalistic design with a dark background to emphasize the bubbles.<br>
+                    Axes labeled clearly with units. <br> <br>
+
+                    Below is a mock up of the desired graph I created in Canva
+                    </p>
+
+                    <img src="/Images/graph1plan.JPG" alt="NeoWs graph plan" class="wireframe">
+            </section>
+        </section>
+        <section class="blogsRight" id="features">
+            <section class="feature">
+                
+                <p>1. Objective: <br>
+                    To visualize the solar flare activity over the past 12 days, showcasing the times of the day when these flares began.<br><br>
+                    
+                    2. Data Source:<br>
+                    NASA's DONKI API, specifically the FLR endpoint which provides details about solar flare activities.<br><br>
+                    
+                    3. Features to Display:<br>
+                    
+                    Date of flare activity (x-axis).<br>
+                    Time of the day when the flare began (y-axis).<br><br>
+                    4. Visualization Tool:<br>
+                    D3.js, a JavaScript library specifically for data-driven document transformations.<br><br>
+                    
+                    5. Graph Type:<br>
+                    Line graph to track the fluctuation of flare activity over time.<br><br>
+                    
+                    6. Design:<br>
+                    
+                    X-axis: Will represent days with clear date labels.<br>
+                    Y-axis: Will depict the time of the day, divided into 24 hours.<br>
+                    Path: A line connecting each data point, helping to trace the activity pattern.<br>
+                    Labels: Clear and concise, using the 'Orbitron' font-family for consistency with the website.<br>
+                    Colors: Line in orange for clarity against a dark background. Axis labels in white. <br> <br>
+
+                    Below is a mock up of the desired graph I created in Canva
+                    </p>
+
+                    <img src="/Images/graph2plan.JPG" alt="FLR graph plan" class="wireframe">
+            </section>
+            <section class="blogTitle">
+                <h2>Graph 2</h2>
+            </section>
+        </section>
+
 
     </main>
     <footer class="pageFooter">
@@ -182,6 +305,6 @@
             
         </section>
     </footer>
-    <script src="index.js"></script>
+    <script src="/JavaScript/index.js"></script>
 </body>
 </html>
