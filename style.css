@@ -330,3 +330,27 @@ footer {
     text-shadow: 0 0 10px rgb(100, 100, 100);
 }
 
+/* Style the slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 5px;
+}
+
+
+/* Style the slider thumb (handle) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -.6%; /* To center the thumb on the track */
+}
+
+#daySlider{
+    accent-color: orange;
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 50%;
+}
+

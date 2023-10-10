@@ -56,6 +56,21 @@
                 <p>This graph represents the solar flare activity recorded over the past 12 days, using data sourced from NASA's DONKI API. The x-axis represents the date, displaying each day the data was collected on. Meanwhile, the y-axis indicates the time of day when each flare event began, measured in hours. By observing the plotted data points and the connecting line, one can discern patterns or trends in solar flare activity, such as specific days or times when the activity was particularly high or low.</p>
             </section>
         </section>
+
+        <section class="graphSection">
+            <section class="blogTitle">
+                <h2>Coronal Mass Ejection</h2>
+                <p>This interactive line chart visualizes the speed of Coronal Mass Ejections (CMEs) observed over a selectable duration, with data sourced from NASA's DONKI API. The X-axis represents the start date of each CME event, while the Y-axis showcases their speed in kilometers per second. By using the slider below the chart, users can dynamically adjust the time frame displayed, ranging from a week to a month. This feature allows for a tailored exploration of CME activity over different periods. The chart provides a comprehensive view of the fluctuations in CME speeds, emphasizing the variability and intensity of solar activity. Engage with the slider to delve deeper into specific time frames and gain insights into the sun's dynamic behavior.</p>
+            </section>
+            
+            <section class="neoSection">
+                
+                <div id="cmeGraph"></div>
+                <input type="range" id="daySlider" min="7" max="30" value="7">
+                <span id="sliderValue">7</span> days
+            </section>
+        </section>
+        
     </main>
     <footer class="pageFooter">
         <section class>
