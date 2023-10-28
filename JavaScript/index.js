@@ -1,4 +1,6 @@
 window.addEventListener("DOMContentLoaded", function() {
+    appendNavigation();
+    
     const links = Array.from(document.querySelectorAll('a[href*="#"]'));
     links.forEach(function(link) {
         link.addEventListener('click', function(event) {
@@ -14,3 +16,46 @@ window.addEventListener("DOMContentLoaded", function() {
     window.location.href = page;
 }
 
+function appendNavigation() {
+    const header = document.createElement('header');
+
+    const headerContent = document.createElement('section');
+    headerContent.classList.add('headerContent');
+
+    const logo = document.createElement('img');
+    logo.src = "/Images/logo.png";
+    logo.alt = "Logo";
+    logo.classList.add('logo');
+    logo.onclick = () => openPage('index.html');
+    
+    headerContent.appendChild(logo);
+
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
+    
+    const pages = [
+        {name: "Home", link: "index.html"},
+        {name: "Blog", link: "blog.html"},
+        {name: "Design", link: "design.html"},
+        {name: "Data Visualisation", link: "dataVisualisation.html"},
+        {name: "Data Art", link: "dataArt.html"}
+    ];
+
+    pages.forEach(page => {
+        const li = document.createElement('li');
+        li.textContent = page.name;
+        li.onclick = () => openPage(page.link);
+        ul.appendChild(li);
+    });
+
+    nav.appendChild(ul);
+    headerContent.appendChild(nav);
+    header.appendChild(headerContent);
+
+    const currentHeader = document.querySelector('header');
+    if(currentHeader) {
+        document.body.replaceChild(header, currentHeader);
+    } else {
+        document.body.insertBefore(header, document.body.firstChild);
+    }
+}

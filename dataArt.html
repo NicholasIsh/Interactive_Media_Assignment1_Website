@@ -9,29 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <title>Data Art Page</title>
 </head>
 <body>
     <header>
-        <section class="headerContent">
-            <img src="/Images/logo.png" alt="Logo" class="logo" onclick="openPage('index.html')">
-            <nav>
-                <ul>
-                    <li onclick="openPage('index.html')">Home</li>
-                    <li onclick="openPage('blog.html')">Blog</li>
-                    <li onclick="openPage('design.html')">Design</li>
-                    <li onclick="openPage('dataVisualisation.html')">Data Visualisation</li>
-                    <li onclick="openPage('dataArt.html')">Data Art</li>
-                </ul>
-            </nav>
-        </section>
+            <section id="navbar"></section>
     </header>
 
     <main>
         <section class="welcome">
-            <img src="/Images/missing.png" alt="HomePagePic" class="homePagePic">
-            <h1>Looks like something is missing</h1>
-            <p>Try again later</p>
+            <section id="dataArt"></section>
         </section>
 
         
@@ -56,5 +44,6 @@
         </section>
     </footer>
     <script src="/JavaScript/index.js"></script>
+    <script src="/JavaScript/dataArt.js"></script>
 </body>
 </html>
