@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="This is the data art page for my space themed website">
+    <meta name="keywords" content="Blog, Web Design, Student, data visualisation, data Art, data driven art">
+    <meta name="author" content="Nicholas Isherwood">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +21,19 @@
     </header>
 
     <main>
-        <section class="welcome">
+        <section class="dataArtHeading">
+            <h1>Data Driven Art</h1>
+            <h2>Helios</h2>
+            <p>Delve into a dynamic representation of the sun and its Coronal Mass Ejection (CME) activity over a 90-day period, sourced directly from NASA's DONKI CME API. This artwork encapsulates a central circle symbolizing the sun, from which 90 radiant lines emanate—each representing a CME event. As the lines rotate, experience the sun’s immense energy, intensified by a mesmerizing optical illusion created by the lines' proximity. Hover to pause this celestial dance and reveal tooltips detailing individual CMEs, bridging the abstract with factual data.
+                The artwork is not just a visual treat but an interactive one, inviting viewers to engage deeply with the data. Witness the sun's activity story, where longer lines denote high-speed CMEs radiating further out, while shorter ones depict slower CMEs. Subtly, an unintended magnetosphere-like effect emerges, a testament to the wonders of artistic data visualization.
+                Embracing the principles of storytelling, aesthetics, and functionality, this piece reimagines traditional data representation. It is a blend of aesthetic allure and data integrity, all while offering unexpected insights and promoting viewer engagement. Dive in, explore, and experience the sun's power and mystery like never before.</p>
+        </section>
+        <section id="loading">
+            
+            <img src="/Images/missing.png" alt="Image of an astronaut" class="loadingImage">
+            <h2>Loading...</h2>
+        </section>
+        <section class="dataArtwork">
             <section id="dataArt"></section>
         </section>
 
@@ -43,6 +58,9 @@
             <span class="footerText" onclick="openPage('https://www.freepik.com/author/catalyststuff')">Images by catalyststuff on Freepik</span>
         </section>
     </footer>
+    <section id="tooltip"></section>
+    
+
     <script src="/JavaScript/index.js"></script>
     <script src="/JavaScript/dataArt.js"></script>
 </body>

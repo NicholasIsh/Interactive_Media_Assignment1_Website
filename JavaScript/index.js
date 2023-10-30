@@ -18,21 +18,17 @@ window.addEventListener("DOMContentLoaded", function() {
 
 function appendNavigation() {
     const header = document.createElement('header');
-
     const headerContent = document.createElement('section');
     headerContent.classList.add('headerContent');
-
     const logo = document.createElement('img');
     logo.src = "/Images/logo.png";
     logo.alt = "Logo";
     logo.classList.add('logo');
     logo.onclick = () => openPage('index.html');
-    
     headerContent.appendChild(logo);
-
     const nav = document.createElement('nav');
     const ul = document.createElement('ul');
-    
+
     const pages = [
         {name: "Home", link: "index.html"},
         {name: "Blog", link: "blog.html"},
@@ -43,8 +39,15 @@ function appendNavigation() {
 
     pages.forEach(page => {
         const li = document.createElement('li');
-        li.textContent = page.name;
-        li.onclick = () => openPage(page.link);
+        const a = document.createElement('a'); 
+        a.textContent = page.name;
+        a.href = page.link;
+        a.onclick = () => openPage(page.link);
+
+        if (window.location.pathname.endsWith(page.link)) {
+            a.classList.add('active-link');  
+        }
+        li.appendChild(a); 
         ul.appendChild(li);
     });
 
