@@ -13,6 +13,7 @@ const END_DATE = `${EndDate.getFullYear()}-${String(EndDate.getMonth() + 1).padS
 
 // Check if data is already stored in session storage
 const savedData = JSON.parse(sessionStorage.getItem('myData'));
+const savedExamData = JSON.parse(sessionStorage.getItem('examData'));
 if (savedData) {
     console.log("Returned data from session storage:", savedData);
     createDataArt(savedData);
@@ -24,13 +25,28 @@ if (savedData) {
         .then(data => {
             console.log("Returned data from API:", data);
             sessionStorage.setItem('myData', JSON.stringify(data));  // Save data to session storage
+
             createDataArt(data);
             clearInterval(loadingInterval);
         });
 }
+if (savedExamData) {
+    console.log("Returned data from session storage:", savedExamData);
+    createExamDataArt(savedExamData);
+
+} else {
+    fetch(`https://api.nasa.gov/neo/rest/v1/feed?startDate=${START_DATE}&endDate=${END_DATE}&api_key=${API_KEY}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Returned data from API:", data);
+            sessionStorage.setItem('examData', JSON.stringify(data));  // Save data to session storage
+
+            createExamDataArt(data);
+            // clearInterval(loadingInterval);
+        });
+    }
 
 function createDataArt(data) {
-
     const formatDate = d3.timeFormat("%Y-%m-%d");
     data = data.map(d => {
         if (d.cmeAnalyses && d.cmeAnalyses.length > 0) {
@@ -169,5 +185,169 @@ function createDataArt(data) {
 function updateLoadingText() {
     loadingText = loadingText === 'Loading...' ? 'Loading.' : loadingText + '.';
     loadingElement.textContent = loadingText;
+}
+
+function createExamDataArt(data){
+    const neos = data.near_earth_objects;
+    let plotData = [];
+    
+    for (let date in neos) {
+        for (let neo of neos[date]) {
+
+        
+            plotData.push({
+                diameter: neo.estimated_diameter.meters.estimated_diameter_max,
+                velocity: parseFloat(neo.close_approach_data[0].relative_velocity.kilometers_per_second),
+                miss_distance: parseFloat(neo.close_approach_data[0].miss_distance.kilometers)
+            });
+        }
+    }
+
+    
+
+    const width = 1000;
+    const height = 1000;
+    const svg = d3.select("#examDataArt")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    const defs = svg.append("defs");
+    const glowFilter = defs.append("filter")
+        .attr("id", "blue-glow")
+        .attr("x", "-50%") // Expand the filter region to accommodate the glow
+        .attr("y", "-50%")
+        .attr("width", "200%")
+        .attr("height", "200%");
+
+    glowFilter.append("feGaussianBlur")
+        .attr("stdDeviation", "4") // Adjust for desired blur amount
+        .attr("result", "coloredBlur");
+
+    glowFilter.append("feFlood")
+        .attr("flood-color", "#60b3fc") // Set the color of the glow
+        .attr("result", "color");
+
+    glowFilter.append("feComposite")
+        .attr("in", "color")
+        .attr("in2", "coloredBlur")
+        .attr("operator", "in")
+        .attr("result", "coloredBlur");
+
+    const feMerge = glowFilter.append("feMerge");
+    feMerge.append("feMergeNode")
+        .attr("in", "coloredBlur");
+    feMerge.append("feMergeNode")
+        .attr("in", "SourceGraphic");
+    // Define the pattern
+    const pattern = defs.append("pattern")
+        .attr("id", "circleImage")
+        .attr("height", 1)
+        .attr("width", 2) // Set the pattern width
+        .attr("patternContentUnits", "objectBoundingBox");
+    
+    // Append the image to the pattern
+    pattern.append("image")
+        .attr("height", 1)
+        .attr("width", 1)
+        .attr("preserveAspectRatio", "xMidYMid slice")
+        .attr("xlink:href", "https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg"); // Replace with the actual image URL
+    
+    pattern.append("image")
+        .attr("height", 1)
+        .attr("width", 1)
+        .attr("x", 1) // Positioned right after the first image
+        .attr("preserveAspectRatio", "xMidYMid slice")
+        .attr("xlink:href", "https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg"); // Replace with the actual image URL
+    
+    pattern.append("animateTransform")
+        .attr("attributeName", "patternTransform")
+        .attr("type", "translate")
+        .attr("from", "0,0")
+        .attr("to", "100") // Move the pattern to the left by its own width
+        .attr("dur", "15s") // Duration of the animation
+        .attr("repeatCount", "indefinite");
+
+    const circleRadius = 50;
+    const circle = svg.append("circle")
+        .attr("cx", width / 2)
+        .attr("cy", height / 2)
+        .attr("r", circleRadius)
+        .style("fill", "url(#circleImage)")
+        .style("filter", "url(#blue-glow)"); 
+
+
+        
+        const lineLength = 900; // adjust as needed
+        const halfLineLength = lineLength / 2; // 
+        const scalingFactor = 6000000; // Example scaling factor, adjust as needed
+        const initialDelay = 200; // Initial delay for the first line in milliseconds
+        let accumulatedDelay = 0; // Total delay accumulated so far
+        const decayFactor = 0.97; // Factor by which the additional delay decreases
+
+        // COLOUR STUFF
+        const maxMissDistance = d3.max(plotData, d => d.miss_distance);
+        const minMissDistance = d3.min(plotData, d => d.miss_distance);
+        const colorScale = d3.scaleLinear()
+        .domain([minMissDistance, maxMissDistance])
+        .range(["red", "green"]); // Red for close, green for far
+        plotData.forEach((neo, i) => {
+            
+            let scaledMissDistance = neo.miss_distance / scalingFactor;
+            let lineGenerator = d3.line().curve(d3.curveBasis); // or another appropriate curve function
+            
+            let angle = (i * 360 / plotData.length) * Math.PI / 180; // convert degrees to radians
+            let middleX = width / 2 + (circleRadius + scaledMissDistance) * Math.cos(angle);
+            let middleY = height / 2 + (circleRadius + scaledMissDistance) * Math.sin(angle);
+        
+
+            // Calculate the control points for the parabola based on velocity and miss distance
+            let controlPoints = calculateControlPoints(neo.velocity, scaledMissDistance, angle, middleX, middleY, halfLineLength); // Implement this function
+            let lineColor = colorScale(neo.miss_distance);
+
+            // Create a line generator
+            let path = svg.append("path")
+                .attr("d", lineGenerator(controlPoints))
+                .style("stroke", lineColor) // Set color based on miss distance
+                .style("fill", "none") // paths should not be filled
+                .style("stroke-width", 1); // set line width as needed
+
+                let totalLength = path.node().getTotalLength();
+                path.attr("stroke-dasharray", totalLength + " " + totalLength)
+                    .attr("stroke-dashoffset", totalLength)
+                    .transition()
+                    .duration(500) // Duration of the drawing effect
+                    .delay(accumulatedDelay)
+                    .attr("stroke-dashoffset", 0);
+
+                // Update the accumulated delay for the next line
+                accumulatedDelay += initialDelay * Math.pow(decayFactor, i);
+        });
+
+        
+}
+
+function calculateControlPoints(velocity, missDistance, angle, middleX, middleY, halfLineLength) {
+    // Adjust these factors based on your data range and desired curvature
+    const velocityFactor = 21.5; // higher values will reduce curvature for high-velocity NEOs
+    const distanceFactor = 21.5; // higher values will increase curvature for close NEOs
+
+    // Calculate curvature based on velocity and miss distance
+    let curvature = (3 / (velocity / velocityFactor + 1)) * (missDistance * distanceFactor);
+
+    // Start point (same as before)
+    let startX = middleX - halfLineLength * Math.cos(angle + Math.PI / 2);
+    let startY = middleY - halfLineLength * Math.sin(angle + Math.PI / 2);
+
+    // End point (same as before)
+    let endX = middleX + halfLineLength * Math.cos(angle + Math.PI / 2);
+    let endY = middleY + halfLineLength * Math.sin(angle + Math.PI / 2);
+
+    // Peak point - Adjusted to create curvature
+    let peakX = middleX + curvature * Math.cos(angle);
+    let peakY = middleY + curvature * Math.sin(angle);
+
+
+    return [[startX, startY], [peakX, peakY], [endX, endY]];
 }
 
