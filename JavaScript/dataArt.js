@@ -157,7 +157,7 @@ function createDataArt(data) {
     let angle = 0;  
     let rotationSpeed = 0.05;  
     const maxRotationSpeed = 0.05; 
-    let rotating = true;  
+    const rotating = true;  
     const deceleration = 0.002;  
     // Function to update the rotation
     function update() {
@@ -189,16 +189,19 @@ function updateLoadingText() {
 
 function createExamDataArt(data){
     const neos = data.near_earth_objects;
-    let plotData = [];
+    const plotData = [];
     
-    for (let date in neos) {
-        for (let neo of neos[date]) {
+    for (const date in neos) {
+        for (const neo of neos[date]) {
 
         
             plotData.push({
                 diameter: neo.estimated_diameter.meters.estimated_diameter_max,
                 velocity: parseFloat(neo.close_approach_data[0].relative_velocity.kilometers_per_second),
-                miss_distance: parseFloat(neo.close_approach_data[0].miss_distance.kilometers)
+                miss_distance: parseFloat(neo.close_approach_data[0].miss_distance.kilometers),
+                closest_approach: neo.close_approach_data[0].close_approach_date,
+                neo_name: neo.name,
+                is_potentially_hazardous_asteroid: neo.is_potentially_hazardous_asteroid,
             });
         }
     }
@@ -239,33 +242,33 @@ function createExamDataArt(data){
         .attr("in", "coloredBlur");
     feMerge.append("feMergeNode")
         .attr("in", "SourceGraphic");
-    // Define the pattern
+   
     const pattern = defs.append("pattern")
         .attr("id", "circleImage")
         .attr("height", 1)
-        .attr("width", 2) // Set the pattern width
+        .attr("width", 2) 
         .attr("patternContentUnits", "objectBoundingBox");
     
-    // Append the image to the pattern
+
     pattern.append("image")
         .attr("height", 1)
         .attr("width", 1)
         .attr("preserveAspectRatio", "xMidYMid slice")
-        .attr("xlink:href", "https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg"); // Replace with the actual image URL
+        .attr("xlink:href", "https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg"); 
     
     pattern.append("image")
         .attr("height", 1)
         .attr("width", 1)
-        .attr("x", 1) // Positioned right after the first image
+        .attr("x", 1) 
         .attr("preserveAspectRatio", "xMidYMid slice")
-        .attr("xlink:href", "https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg"); // Replace with the actual image URL
+        .attr("xlink:href", "https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg");
     
     pattern.append("animateTransform")
         .attr("attributeName", "patternTransform")
         .attr("type", "translate")
         .attr("from", "0,0")
-        .attr("to", "100") // Move the pattern to the left by its own width
-        .attr("dur", "15s") // Duration of the animation
+        .attr("to", "100") 
+        .attr("dur", "15s") 
         .attr("repeatCount", "indefinite");
 
     const circleRadius = 50;
@@ -278,12 +281,12 @@ function createExamDataArt(data){
 
 
         
-        const lineLength = 900; // adjust as needed
-        const halfLineLength = lineLength / 2; // 
-        const scalingFactor = 6000000; // Example scaling factor, adjust as needed
-        const initialDelay = 200; // Initial delay for the first line in milliseconds
-        let accumulatedDelay = 0; // Total delay accumulated so far
-        const decayFactor = 0.97; // Factor by which the additional delay decreases
+        const lineLength = 900;
+        const halfLineLength = lineLength / 2; 
+        const scalingFactor = 6000000; 
+        const initialDelay = 200; 
+        let accumulatedDelay = 0; 
+        const decayFactor = 0.97; 
 
         // COLOUR STUFF
         const maxMissDistance = d3.max(plotData, d => d.miss_distance);
@@ -291,36 +294,62 @@ function createExamDataArt(data){
         const colorScale = d3.scaleLinear()
         .domain([minMissDistance, maxMissDistance])
         .range(["red", "green"]); // Red for close, green for far
+        const originalColors = [];
         plotData.forEach((neo, i) => {
             
-            let scaledMissDistance = neo.miss_distance / scalingFactor;
-            let lineGenerator = d3.line().curve(d3.curveBasis); // or another appropriate curve function
+            const scaledMissDistance = neo.miss_distance / scalingFactor;
+            const lineGenerator = d3.line().curve(d3.curveBasis); 
             
-            let angle = (i * 360 / plotData.length) * Math.PI / 180; // convert degrees to radians
-            let middleX = width / 2 + (circleRadius + scaledMissDistance) * Math.cos(angle);
-            let middleY = height / 2 + (circleRadius + scaledMissDistance) * Math.sin(angle);
+            const angle = (i * 360 / plotData.length) * Math.PI / 180; 
+            const middleX = width / 2 + (circleRadius + scaledMissDistance) * Math.cos(angle);
+            const middleY = height / 2 + (circleRadius + scaledMissDistance) * Math.sin(angle);
         
 
-            // Calculate the control points for the parabola based on velocity and miss distance
-            let controlPoints = calculateControlPoints(neo.velocity, scaledMissDistance, angle, middleX, middleY, halfLineLength); // Implement this function
-            let lineColor = colorScale(neo.miss_distance);
+            
+            const controlPoints = calculateControlPoints(neo.velocity, scaledMissDistance, angle, middleX, middleY, halfLineLength);
+            const lineColor = colorScale(neo.miss_distance);
+            originalColors.push(lineColor); 
 
-            // Create a line generator
-            let path = svg.append("path")
+
+
+            const path = svg.append("path")
                 .attr("d", lineGenerator(controlPoints))
-                .style("stroke", lineColor) // Set color based on miss distance
-                .style("fill", "none") // paths should not be filled
-                .style("stroke-width", 1); // set line width as needed
+                .style("stroke", lineColor) 
+                .style("fill", "none")
+                .style("stroke-width", 1)
+                .attr("class", "neo-line") 
+                .on("mouseover", function(event) {
+                    d3.selectAll(".neo-line").style("stroke", "#1f2124");
+                    d3.select(this).style("stroke", originalColors[i])
+                            .style("stroke-width", 4);
+                    
+                            d3.select("#tooltip")
+                            .style("display", "block")
+                            .style("opacity", 1) 
+                            .html(`Name: ${neo.neo_name} <br>Velocity: ${parseFloat(neo.velocity).toFixed(2)} km/s<br>Diameter: ${parseFloat(neo.diameter).toFixed(2)} m<br>Miss Distance: ${parseFloat(neo.miss_distance).toFixed(2)} km<br>Closest Approach: ${neo.closest_approach}<br>Potentially Hazardous: ${neo.is_potentially_hazardous_asteroid}`)
+                            .style("left", (event.pageX + 10) + "px")  
+                            .style("top", (event.pageY - 10) + "px"); 
+                })
+                .on("mouseout", function(event) {
+                    d3.selectAll(".neo-line").style("stroke", (d, j) => originalColors[j]) 
+                            .style("stroke-width", 1);
 
-                let totalLength = path.node().getTotalLength();
+                            d3.select("#tooltip")
+                            .style("opacity", 0) 
+                            .transition()
+                            .duration(500) 
+                            .style("display", "none");
+                });
+
+                const totalLength = path.node().getTotalLength();
                 path.attr("stroke-dasharray", totalLength + " " + totalLength)
                     .attr("stroke-dashoffset", totalLength)
                     .transition()
-                    .duration(500) // Duration of the drawing effect
+                    .duration(500) 
                     .delay(accumulatedDelay)
                     .attr("stroke-dashoffset", 0);
 
-                // Update the accumulated delay for the next line
+                
                 accumulatedDelay += initialDelay * Math.pow(decayFactor, i);
         });
 
@@ -328,24 +357,17 @@ function createExamDataArt(data){
 }
 
 function calculateControlPoints(velocity, missDistance, angle, middleX, middleY, halfLineLength) {
-    // Adjust these factors based on your data range and desired curvature
-    const velocityFactor = 21.5; // higher values will reduce curvature for high-velocity NEOs
-    const distanceFactor = 21.5; // higher values will increase curvature for close NEOs
+    
+    const velocityFactor = 21.5; 
+    const distanceFactor = 21.5; 
 
-    // Calculate curvature based on velocity and miss distance
-    let curvature = (3 / (velocity / velocityFactor + 1)) * (missDistance * distanceFactor);
-
-    // Start point (same as before)
-    let startX = middleX - halfLineLength * Math.cos(angle + Math.PI / 2);
-    let startY = middleY - halfLineLength * Math.sin(angle + Math.PI / 2);
-
-    // End point (same as before)
-    let endX = middleX + halfLineLength * Math.cos(angle + Math.PI / 2);
-    let endY = middleY + halfLineLength * Math.sin(angle + Math.PI / 2);
-
-    // Peak point - Adjusted to create curvature
-    let peakX = middleX + curvature * Math.cos(angle);
-    let peakY = middleY + curvature * Math.sin(angle);
+    const curvature = (3 / (velocity / velocityFactor + 1)) * (missDistance * distanceFactor);
+    const startX = middleX - halfLineLength * Math.cos(angle + Math.PI / 2);
+    const startY = middleY - halfLineLength * Math.sin(angle + Math.PI / 2);
+    const endX = middleX + halfLineLength * Math.cos(angle + Math.PI / 2);
+    const endY = middleY + halfLineLength * Math.sin(angle + Math.PI / 2);
+    const peakX = middleX + curvature * Math.cos(angle);
+    const peakY = middleY + curvature * Math.sin(angle);
 
 
     return [[startX, startY], [peakX, peakY], [endX, endY]];
